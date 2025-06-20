@@ -1,4 +1,11 @@
 @echo off
+
+REM -------------------------------------------------
+REM This script is provided "as is" with no warranty.
+REM Use at your own risk.
+REM It is always recommended to do a /dry-run first
+REM -------------------------------------------------
+
 SETLOCAL EnableDelayedExpansion
 
 set "SHOW_USAGE=0"
@@ -42,6 +49,11 @@ if /i "%~3"=="/dry-run" set "DRY_RUN=1"
 if /i "%~2"=="/Y" set "AUTO_REPLY=1"
 if /i "%~3"=="/Y" set "AUTO_REPLY=1"
 
+cls
+echo ******************************************************
+echo Search started in %searchDir%
+echo ******************************************************
+
 for /D /R "%searchDir%" %%d in (node_modules) do (
     REM echo Found %%d
 	if exist "%%d" (
@@ -59,8 +71,8 @@ for /D /R "%searchDir%" %%d in (node_modules) do (
 		)
 	)
 )
-echo --------------------------------------------------
+echo ******************************************************
 echo Found %fcount%
 echo Deleted %delcnt%
-echo --------------------------------------------------
-echo exiting
+echo ******************************************************
+echo Done
